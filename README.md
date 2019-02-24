@@ -1,9 +1,9 @@
 # RXHMusic
 VB.NET 2015 music
-
-
-
 <br />
+[blog](https://blog.51cto.com/srxboys/1567514)
+
+<br /><br />
 
 > 系统需求
 - [ windows7 32 ] 、XP (目前不支持64位)
