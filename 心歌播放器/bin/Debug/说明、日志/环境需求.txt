@@ -1,0 +1,3 @@
+系统：win7 32、XP  
+
+必备软件：Access 2003  、 NET Framework 2.0

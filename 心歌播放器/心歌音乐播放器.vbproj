@@ -1,0 +1,267 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B66AEF62-17F9-4F9A-9612-D268C1091D0C}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>心歌音乐播放器.My.MyApplication</StartupObject>
+    <RootNamespace>心歌音乐播放器</RootNamespace>
+    <AssemblyName>心歌音乐播放器</AssemblyName>
+    <MyType>WindowsForms</MyType>
+    <ManifestCertificateThumbprint>C99D8B261017F89E97D8F3D7980D9D2CD9350ED4</ManifestCertificateThumbprint>
+    <ManifestKeyFile>酷猫音乐播放器_TemporaryKey.pfx</ManifestKeyFile>
+    <GenerateManifests>true</GenerateManifests>
+    <SignManifests>true</SignManifests>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <ApplicationIcon>music.ico</ApplicationIcon>
+    <TargetZone>Custom</TargetZone>
+    <PublishUrl>D:\book\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <TargetCulture>zh-CHS</TargetCulture>
+    <ProductName>心歌播放器</ProductName>
+    <PublisherName>srxboys</PublisherName>
+    <AutorunEnabled>true</AutorunEnabled>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>心歌音乐播放器.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>心歌音乐播放器.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Auther_Message.Designer.vb">
+      <DependentUpon>Auther_Message.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Auther_Message.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DeskMusic.Designer.vb">
+      <DependentUpon>DeskMusic.vb</DependentUpon>
+    </Compile>
+    <Compile Include="DeskMusic.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.vb">
+      <DependentUpon>Form1.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form1.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="km_backImage_select.Designer.vb">
+      <DependentUpon>km_backImage_select.vb</DependentUpon>
+    </Compile>
+    <Compile Include="km_backImage_select.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="km_cgSetting.Designer.vb">
+      <DependentUpon>km_cgSetting.vb</DependentUpon>
+    </Compile>
+    <Compile Include="km_cgSetting.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="km_DeskSetting.Designer.vb">
+      <DependentUpon>km_DeskSetting.vb</DependentUpon>
+    </Compile>
+    <Compile Include="km_DeskSetting.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="km_gcPathSetting.Designer.vb">
+      <DependentUpon>km_gcPathSetting.vb</DependentUpon>
+    </Compile>
+    <Compile Include="km_gcPathSetting.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="km_rjSetting.Designer.vb">
+      <DependentUpon>km_rjSetting.vb</DependentUpon>
+    </Compile>
+    <Compile Include="km_rjSetting.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="km_windowsSetting.Designer.vb">
+      <DependentUpon>km_windowsSetting.vb</DependentUpon>
+    </Compile>
+    <Compile Include="km_windowsSetting.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="km_yxSetting.Designer.vb">
+      <DependentUpon>km_yxSetting.vb</DependentUpon>
+    </Compile>
+    <Compile Include="km_yxSetting.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Module1.vb" />
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Setting.Designer.vb">
+      <DependentUpon>Setting.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Setting.vb">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Auther_Message.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Auther_Message.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DeskMusic.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>DeskMusic.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.zh-CHS.resx">
+      <DependentUpon>Form1.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="km_backImage_select.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>km_backImage_select.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="km_cgSetting.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>km_cgSetting.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="km_DeskSetting.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>km_DeskSetting.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="km_gcPathSetting.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>km_gcPathSetting.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="km_rjSetting.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>km_rjSetting.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="km_windowsSetting.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>km_windowsSetting.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="km_yxSetting.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>km_yxSetting.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Setting.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Setting.vb</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="AxWMPLib">
+      <Guid>{6BF52A50-394A-11D3-B153-00C04F79FAA6}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>aximp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+    <COMReference Include="WMPLib">
+      <Guid>{6BF52A50-394A-11D3-B153-00C04F79FAA6}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BaseApplicationManifest Include="My Project\app.manifest" />
+    <None Include="酷猫音乐播放器_TemporaryKey.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="music.ico" />
+    <Content Include="web_music.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
