@@ -44,7 +44,7 @@ VB.NET 2015 music
 ```
 
 <br />
-[blog](https://blog.51cto.com/srxboys/1567514)
+
 ![srxboys](https://github.com/srxboys/RXHMusic/blob/master/img/1.jpg)
 ![srxboys](https://github.com/srxboys/RXHMusic/blob/master/img/2.jpg)
 ![srxboys](https://github.com/srxboys/RXHMusic/blob/master/img/3.gif)
