@@ -1192,11 +1192,11 @@ Public Class Form1
 
             myconn.Open()
             Dim myda1 As New OleDbDataAdapter(mysql, myconn)
-            myda1.Fill(myds, "mlist")
+            myda1.Fill(myds, "mList")
             myconn.Close()
-            If myds.Tables("mlist").Rows.Count > 0 Then
-                For i As Integer = 0 To myds.Tables("mlist").Rows.Count - 1
-                    Me.ListBox1.Items.Add(i & "  " & myds.Tables("mlist").Rows(i).Item(1))
+            If myds.Tables("mList").Rows.Count > 0 Then
+                For i As Integer = 0 To myds.Tables("mList").Rows.Count - 1
+                    Me.ListBox1.Items.Add(i & "  " & myds.Tables("mList").Rows(i).Item(1))
                 Next
             End If
             myds.Clear()

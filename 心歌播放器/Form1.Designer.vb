@@ -19,121 +19,121 @@ Partial Class Form1
     '不要使用代码编辑器修改它。
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
-        Me.Label38 = New System.Windows.Forms.Label
-        Me.PictureBox4 = New System.Windows.Forms.PictureBox
+        Me.Label38 = New System.Windows.Forms.Label()
+        Me.PictureBox4 = New System.Windows.Forms.PictureBox()
         Me.Timer2 = New System.Windows.Forms.Timer(Me.components)
-        Me.Label36 = New System.Windows.Forms.Label
-        Me.Label35 = New System.Windows.Forms.Label
-        Me.PictureBox8 = New System.Windows.Forms.PictureBox
-        Me.Label32 = New System.Windows.Forms.Label
-        Me.TrackBar4 = New System.Windows.Forms.TrackBar
-        Me.TextBox1 = New System.Windows.Forms.TextBox
+        Me.Label36 = New System.Windows.Forms.Label()
+        Me.Label35 = New System.Windows.Forms.Label()
+        Me.PictureBox8 = New System.Windows.Forms.PictureBox()
+        Me.Label32 = New System.Windows.Forms.Label()
+        Me.TrackBar4 = New System.Windows.Forms.TrackBar()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.Timer3 = New System.Windows.Forms.Timer(Me.components)
-        Me.Label27 = New System.Windows.Forms.Label
-        Me.PictureBox2 = New System.Windows.Forms.PictureBox
-        Me.PictureBox3 = New System.Windows.Forms.PictureBox
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox
+        Me.Label27 = New System.Windows.Forms.Label()
+        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
+        Me.PictureBox3 = New System.Windows.Forms.PictureBox()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem
-        Me.ToolStripMenuItem4 = New System.Windows.Forms.ToolStripMenuItem
-        Me.添加文件夹ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.ToolStripMenuItem3 = New System.Windows.Forms.ToolStripMenuItem
-        Me.单曲播放ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.单曲循环ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.顺序播放ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.列表播放ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.随机播放ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.ToolStripMenuItem5 = New System.Windows.Forms.ToolStripMenuItem
-        Me.自动切换列表ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.设置ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.显示日历ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.下载最新版本ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.Label15 = New System.Windows.Forms.Label
-        Me.Label16 = New System.Windows.Forms.Label
-        Me.Label13 = New System.Windows.Forms.Label
-        Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog
-        Me.Label12 = New System.Windows.Forms.Label
+        Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem4 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.添加文件夹ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem3 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.单曲播放ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.单曲循环ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.顺序播放ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.列表播放ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.随机播放ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem5 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.自动切换列表ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.设置ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.显示日历ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.下载最新版本ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.Label15 = New System.Windows.Forms.Label()
+        Me.Label16 = New System.Windows.Forms.Label()
+        Me.Label13 = New System.Windows.Forms.Label()
+        Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
+        Me.Label12 = New System.Windows.Forms.Label()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
-        Me.Label39 = New System.Windows.Forms.Label
-        Me.Label21 = New System.Windows.Forms.Label
-        Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog
-        Me.Label11 = New System.Windows.Forms.Label
-        Me.TrackBar2 = New System.Windows.Forms.TrackBar
-        Me.Label14 = New System.Windows.Forms.Label
-        Me.TextBox2 = New System.Windows.Forms.TextBox
-        Me.OpenFileDialog2 = New System.Windows.Forms.OpenFileDialog
-        Me.Label7 = New System.Windows.Forms.Label
+        Me.Label39 = New System.Windows.Forms.Label()
+        Me.Label21 = New System.Windows.Forms.Label()
+        Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.TrackBar2 = New System.Windows.Forms.TrackBar()
+        Me.Label14 = New System.Windows.Forms.Label()
+        Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.OpenFileDialog2 = New System.Windows.Forms.OpenFileDialog()
+        Me.Label7 = New System.Windows.Forms.Label()
         Me.Timer5 = New System.Windows.Forms.Timer(Me.components)
         Me.ContextMenuStrip4 = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.最小界面ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.简易界面ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.完美界面ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.PictureBox9 = New System.Windows.Forms.PictureBox
-        Me.Label6 = New System.Windows.Forms.Label
-        Me.ListBox2 = New System.Windows.Forms.ListBox
-        Me.Label45 = New System.Windows.Forms.Label
-        Me.退出ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.ListBox3 = New System.Windows.Forms.ListBox
-        Me.Label40 = New System.Windows.Forms.Label
-        Me.Label41 = New System.Windows.Forms.Label
-        Me.恢复窗口ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.Label44 = New System.Windows.Forms.Label
-        Me.Label43 = New System.Windows.Forms.Label
-        Me.Label42 = New System.Windows.Forms.Label
-        Me.Label5 = New System.Windows.Forms.Label
+        Me.最小界面ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.简易界面ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.完美界面ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PictureBox9 = New System.Windows.Forms.PictureBox()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.ListBox2 = New System.Windows.Forms.ListBox()
+        Me.Label45 = New System.Windows.Forms.Label()
+        Me.退出ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ListBox3 = New System.Windows.Forms.ListBox()
+        Me.Label40 = New System.Windows.Forms.Label()
+        Me.Label41 = New System.Windows.Forms.Label()
+        Me.恢复窗口ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.Label44 = New System.Windows.Forms.Label()
+        Me.Label43 = New System.Windows.Forms.Label()
+        Me.Label42 = New System.Windows.Forms.Label()
+        Me.Label5 = New System.Windows.Forms.Label()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
-        Me.PictureBox5 = New System.Windows.Forms.PictureBox
-        Me.最小化ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
+        Me.PictureBox5 = New System.Windows.Forms.PictureBox()
+        Me.最小化ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ContextMenuStrip3 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.NotifyIcon1 = New System.Windows.Forms.NotifyIcon(Me.components)
         Me.Timer4 = New System.Windows.Forms.Timer(Me.components)
-        Me.Label46 = New System.Windows.Forms.Label
-        Me.播放模式ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.单曲播放ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem
-        Me.单曲循环ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem
-        Me.顺序播放ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem
-        Me.列表播放ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem
-        Me.随机播放ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem
+        Me.Label46 = New System.Windows.Forms.Label()
+        Me.播放模式ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.单曲播放ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.单曲循环ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.顺序播放ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.列表播放ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.随机播放ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ContextMenuStrip2 = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.播放ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem
-        Me.打开文件目录ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.删除ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem
-        Me.彻底删除包括本地文件ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.搜索歌名ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.搜索歌词ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.清空列表ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.MonthCalendar1 = New System.Windows.Forms.MonthCalendar
-        Me.Label24 = New System.Windows.Forms.Label
-        Me.Label28 = New System.Windows.Forms.Label
-        Me.Label30 = New System.Windows.Forms.Label
-        Me.Label18 = New System.Windows.Forms.Label
-        Me.PictureBox7 = New System.Windows.Forms.PictureBox
-        Me.Label25 = New System.Windows.Forms.Label
-        Me.Label23 = New System.Windows.Forms.Label
-        Me.Label29 = New System.Windows.Forms.Label
-        Me.PictureBox6 = New System.Windows.Forms.PictureBox
-        Me.AxWindowsMediaPlayer1 = New AxWMPLib.AxWindowsMediaPlayer
-        Me.Label4 = New System.Windows.Forms.Label
-        Me.Label3 = New System.Windows.Forms.Label
-        Me.Label2 = New System.Windows.Forms.Label
-        Me.Label26 = New System.Windows.Forms.Label
-        Me.Label17 = New System.Windows.Forms.Label
-        Me.Label19 = New System.Windows.Forms.Label
-        Me.Label22 = New System.Windows.Forms.Label
-        Me.TrackBar1 = New System.Windows.Forms.TrackBar
-        Me.Label20 = New System.Windows.Forms.Label
-        Me.ListBox1 = New System.Windows.Forms.ListBox
-        Me.Label9 = New System.Windows.Forms.Label
-        Me.Label8 = New System.Windows.Forms.Label
-        Me.Label37 = New System.Windows.Forms.Label
-        Me.Label34 = New System.Windows.Forms.Label
-        Me.Label33 = New System.Windows.Forms.Label
-        Me.TrackBar3 = New System.Windows.Forms.TrackBar
-        Me.Label31 = New System.Windows.Forms.Label
-        Me.Label10 = New System.Windows.Forms.Label
-        Me.Label1 = New System.Windows.Forms.Label
+        Me.播放ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.打开文件目录ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.删除ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.彻底删除包括本地文件ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.搜索歌名ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.搜索歌词ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.清空列表ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MonthCalendar1 = New System.Windows.Forms.MonthCalendar()
+        Me.Label24 = New System.Windows.Forms.Label()
+        Me.Label28 = New System.Windows.Forms.Label()
+        Me.Label30 = New System.Windows.Forms.Label()
+        Me.Label18 = New System.Windows.Forms.Label()
+        Me.PictureBox7 = New System.Windows.Forms.PictureBox()
+        Me.Label25 = New System.Windows.Forms.Label()
+        Me.Label23 = New System.Windows.Forms.Label()
+        Me.Label29 = New System.Windows.Forms.Label()
+        Me.PictureBox6 = New System.Windows.Forms.PictureBox()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Label26 = New System.Windows.Forms.Label()
+        Me.Label17 = New System.Windows.Forms.Label()
+        Me.Label19 = New System.Windows.Forms.Label()
+        Me.Label22 = New System.Windows.Forms.Label()
+        Me.TrackBar1 = New System.Windows.Forms.TrackBar()
+        Me.Label20 = New System.Windows.Forms.Label()
+        Me.ListBox1 = New System.Windows.Forms.ListBox()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.Label37 = New System.Windows.Forms.Label()
+        Me.Label34 = New System.Windows.Forms.Label()
+        Me.Label33 = New System.Windows.Forms.Label()
+        Me.TrackBar3 = New System.Windows.Forms.TrackBar()
+        Me.Label31 = New System.Windows.Forms.Label()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.AxWindowsMediaPlayer1 = New AxWMPLib.AxWindowsMediaPlayer()
         CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox8, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TrackBar4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -149,9 +149,9 @@ Partial Class Form1
         Me.ContextMenuStrip2.SuspendLayout()
         CType(Me.PictureBox7, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox6, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.AxWindowsMediaPlayer1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TrackBar1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TrackBar3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.AxWindowsMediaPlayer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label38
@@ -882,16 +882,6 @@ Partial Class Form1
         Me.PictureBox6.TabIndex = 85
         Me.PictureBox6.TabStop = False
         '
-        'AxWindowsMediaPlayer1
-        '
-        Me.AxWindowsMediaPlayer1.AllowDrop = True
-        Me.AxWindowsMediaPlayer1.Enabled = True
-        Me.AxWindowsMediaPlayer1.Location = New System.Drawing.Point(481, 231)
-        Me.AxWindowsMediaPlayer1.Name = "AxWindowsMediaPlayer1"
-        Me.AxWindowsMediaPlayer1.OcxState = CType(resources.GetObject("AxWindowsMediaPlayer1.OcxState"), System.Windows.Forms.AxHost.State)
-        Me.AxWindowsMediaPlayer1.Size = New System.Drawing.Size(224, 122)
-        Me.AxWindowsMediaPlayer1.TabIndex = 126
-        '
         'Label4
         '
         Me.Label4.ImeMode = System.Windows.Forms.ImeMode.NoControl
@@ -1103,6 +1093,16 @@ Partial Class Form1
         Me.Label1.TabIndex = 71
         Me.Label1.Text = "心歌音乐"
         '
+        'AxWindowsMediaPlayer1
+        '
+        Me.AxWindowsMediaPlayer1.AllowDrop = True
+        Me.AxWindowsMediaPlayer1.Enabled = True
+        Me.AxWindowsMediaPlayer1.Location = New System.Drawing.Point(481, 231)
+        Me.AxWindowsMediaPlayer1.Name = "AxWindowsMediaPlayer1"
+        Me.AxWindowsMediaPlayer1.OcxState = CType(resources.GetObject("AxWindowsMediaPlayer1.OcxState"), System.Windows.Forms.AxHost.State)
+        Me.AxWindowsMediaPlayer1.Size = New System.Drawing.Size(224, 122)
+        Me.AxWindowsMediaPlayer1.TabIndex = 126
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
@@ -1195,9 +1195,9 @@ Partial Class Form1
         Me.ContextMenuStrip2.ResumeLayout(False)
         CType(Me.PictureBox7, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox6, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.AxWindowsMediaPlayer1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TrackBar1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TrackBar3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.AxWindowsMediaPlayer1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
