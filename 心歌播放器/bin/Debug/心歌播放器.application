@@ -3,15 +3,18 @@
   <assemblyIdentity name="心歌播放器.application" version="1.0.0.0" publicKeyToken="0000000000000000" language="zh-CHS" processorArchitecture="msil" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <description asmv2:publisher="srxboys" asmv2:product="心歌播放器" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <deployment install="true" mapFileExtensions="true" />
+  <compatibleFrameworks xmlns="urn:schemas-microsoft-com:clickonce.v2">
+    <framework targetVersion="4.6.2" profile="Full" supportedRuntime="4.0.30319" />
+  </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="心歌播放器.exe.manifest" size="5456">
+    <dependentAssembly dependencyType="install" codebase="心歌播放器.exe.manifest" size="6051">
       <assemblyIdentity name="心歌播放器.exe" version="1.0.0.0" publicKeyToken="0000000000000000" language="zh-CHS" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
-        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>PMsAjpRCI35jNbFGtmyTRXT7OCk=</dsig:DigestValue>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>7ktE3D80dl+HRm2m/W7BJFAiUxJM4vOseity0Gni4zo=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

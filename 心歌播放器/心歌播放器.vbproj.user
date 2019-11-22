@@ -11,6 +11,7 @@
     </BootstrapperUrlHistory>
     <FallbackCulture>zh-CN</FallbackCulture>
     <VerifyUploadedFiles>false</VerifyUploadedFiles>
+    <ErrorReportUrlHistory />
   </PropertyGroup>
   <PropertyGroup>
     <EnableSecurityDebugging>false</EnableSecurityDebugging>
