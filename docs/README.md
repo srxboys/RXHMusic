@@ -5,7 +5,7 @@ VB.NET 2017 music
 
 <br /><br />
 
-> 系统需求
+> 系统要求
 - [ windows7 32 ] 、XP (目前不支持64位)
 - Access2003
 - NET Framework 4.6.2
