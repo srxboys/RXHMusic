@@ -40,7 +40,6 @@ E:\github\srxboys\RXHMusic\心歌播放器\bin\Debug\心歌播放器.xml
 E:\github\srxboys\RXHMusic\心歌播放器\bin\Debug\zh-CHS\心歌播放器.resources.dll
 E:\github\srxboys\RXHMusic\心歌播放器\bin\Debug\Interop.WMPLib.dll
 E:\github\srxboys\RXHMusic\心歌播放器\bin\Debug\AxInterop.WMPLib.dll
-E:\github\srxboys\RXHMusic\心歌播放器\obj\Debug\心歌播放器.vbprojAssemblyReference.cache
 E:\github\srxboys\RXHMusic\心歌播放器\obj\Debug\Interop.WMPLib.dll
 E:\github\srxboys\RXHMusic\心歌播放器\obj\Debug\AxInterop.WMPLib.dll
 E:\github\srxboys\RXHMusic\心歌播放器\obj\Debug\心歌播放器.vbproj.ResolveComReference.cache
@@ -67,3 +66,13 @@ E:\github\srxboys\RXHMusic\心歌播放器\obj\Debug\心歌播放器.exe
 E:\github\srxboys\RXHMusic\心歌播放器\obj\Debug\心歌播放器.xml
 E:\github\srxboys\RXHMusic\心歌播放器\obj\Debug\心歌播放器.pdb
 E:\github\srxboys\RXHMusic\心歌播放器\bin\Debug\心歌播放器.exe.config
+E:\github\srxboys\RXHMusic\心歌播放器\bin\Debug\SQLite.Designer.dll
+E:\github\srxboys\RXHMusic\心歌播放器\bin\Debug\System.Data.SQLite.dll
+E:\github\srxboys\RXHMusic\心歌播放器\bin\Debug\System.Data.SQLite.EF6.dll
+E:\github\srxboys\RXHMusic\心歌播放器\bin\Debug\System.Data.SQLite.Linq.dll
+E:\github\srxboys\RXHMusic\心歌播放器\bin\Debug\Microsoft.VisualStudio.OLE.Interop.dll
+E:\github\srxboys\RXHMusic\心歌播放器\bin\Debug\Microsoft.VisualStudio.Shell.Interop.dll
+E:\github\srxboys\RXHMusic\心歌播放器\bin\Debug\EnvDTE.dll
+E:\github\srxboys\RXHMusic\心歌播放器\bin\Debug\Microsoft.VisualStudio.TextManager.Interop.dll
+E:\github\srxboys\RXHMusic\心歌播放器\bin\Debug\stdole.dll
+E:\github\srxboys\RXHMusic\心歌播放器\obj\Debug\心歌播放器.vbproj.CopyComplete

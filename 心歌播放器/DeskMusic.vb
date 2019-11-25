@@ -260,10 +260,11 @@ Public Class DeskMusic
                 Txt = lrc_name
                 ' lrc_show_windows()
                 If lrc_name = "" Then
+                    'MsgBox("没有去下载")
                     Exit Sub
                 End If
 
-                
+
                 txt1 = ""
                 '再去掉扩展名
                 For i = Len(lrc_name) To 1 Step -1
@@ -320,8 +321,7 @@ Public Class DeskMusic
                 GetWord(lrc_path, ListBox1, ListBox2)
             End If
         Catch ex As Exception
-            MsgBox("timer2 " & ex.Message)
-            debug_write("DeskMusic.vb 桌面歌词 行316 " & ex.Message.ToString)
+            ReportError(ex)
         End Try
 
     End Sub
