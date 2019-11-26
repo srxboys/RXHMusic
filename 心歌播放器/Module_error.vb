@@ -8,6 +8,8 @@
 ' 老项目了，就改改数据库，就不会再又优化了
 '
 '
+
+
 Imports System.IO
 
 Module Module_error
@@ -24,22 +26,35 @@ Module Module_error
     End Sub
 
     Public Sub debug_write(ByVal txt As String)
+        Dim IsDebug As Boolean = System.Diagnostics.Debugger.IsAttached
+        If IsDebug = True Then
+            '不是 Debug模式，不要打印日志
+            Exit Sub
+        End If
+
+        Dim fs As FileStream = Nothing
+        Dim s As StreamWriter = Nothing
+
         Try
-            Dim fs As FileStream
+
             fs = New FileStream(Application.StartupPath & "\debug.txt", FileMode.Append, FileAccess.Write)
-            Dim s As StreamWriter
+
             s = New StreamWriter(fs)
             s.AutoFlush = False
             ' s.NewLine
             s.Write(" " & Chr(13) & Chr(10) & Chr(13) & Chr(10) & txt & "。 日期：" & Now())
+            s = Nothing
+            fs = Nothing
             s.Close()
             fs.Close()
         Catch ex As Exception
+            s = Nothing
+            fs = Nothing
 
+            s.Close()
+            fs.Close()
             MsgBox("debug 没有写入" & ex.Message)
         End Try
     End Sub
-
-
 
 End Module

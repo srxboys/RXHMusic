@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
-  <asmv1:assemblyIdentity name="心歌播放器.exe" version="1.0.0.1" publicKeyToken="0000000000000000" language="zh-CHS" processorArchitecture="msil" type="win32" />
+  <asmv1:assemblyIdentity name="心歌播放器.exe" version="1.0.0.2" publicKeyToken="0000000000000000" language="zh-CHS" processorArchitecture="msil" type="win32" />
   <description asmv2:iconFile="music.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
@@ -50,7 +50,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>UhFrC+KgNsXnh76cPkJU6UYbTAWQOFNf+vFcbtk8QgM=</dsig:DigestValue>
+        <dsig:DigestValue>qfOFH2GLlOKqkPboZZa7AUcsolgh9UgxsuTj3vBHR8c=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -74,7 +74,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>dgGw+BC5hyHUfDFmDaOBmBrIeZNt19r3Vbb68rNbLOM=</dsig:DigestValue>
+        <dsig:DigestValue>Ku810Okgj4nYQKBIIB7Odk4Nuwk+h+nBEFaZmkSrOq4=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -175,14 +175,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="心歌播放器.exe" size="327648">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="心歌播放器.exe" size="327136">
       <assemblyIdentity name="心歌播放器" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>XhEgW3qXby4/bwNJZgDh5ae3cZn9m6lnmja0Ij5FhVQ=</dsig:DigestValue>
+        <dsig:DigestValue>+ag2cexsib9wFC3Ovm1afJpbybNSArg4RkggaQmBXPI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -194,7 +194,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>jJtdIrNPg1lWq9QtYseCbbgjp77WgP9LTSbJeqRH0l8=</dsig:DigestValue>
+        <dsig:DigestValue>KXjjxP06YwsqFL87TQVyQMt7+jEcDyDjW2vwJfoALuk=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

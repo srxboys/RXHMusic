@@ -76,3 +76,6 @@ E:\github\srxboys\RXHMusic\心歌播放器\bin\Debug\EnvDTE.dll
 E:\github\srxboys\RXHMusic\心歌播放器\bin\Debug\Microsoft.VisualStudio.TextManager.Interop.dll
 E:\github\srxboys\RXHMusic\心歌播放器\bin\Debug\stdole.dll
 E:\github\srxboys\RXHMusic\心歌播放器\obj\Debug\心歌播放器.vbproj.CopyComplete
+E:\github\srxboys\RXHMusic\心歌播放器\bin\Debug\心歌播放器.exe.CodeAnalysisLog.xml
+E:\github\srxboys\RXHMusic\心歌播放器\bin\Debug\心歌播放器.exe.lastcodeanalysissucceeded
+E:\github\srxboys\RXHMusic\心歌播放器\obj\Debug\心歌播放器.vbprojAssemblyReference.cache

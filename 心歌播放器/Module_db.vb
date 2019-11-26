@@ -98,6 +98,7 @@ Module Module_db
             End If
             Dim cmd As New SQLiteCommand
             cmd.Connection = myconn
+            '准守 CA2100：检查 SQL 查询中是否有安全漏洞
             cmd.CommandText = commandText
             'cmd.CommandTimeout = 10
             Dim result As Integer = cmd.ExecuteNonQuery()
@@ -118,9 +119,17 @@ Module Module_db
         Return True
     End Function
 
-    Public Function DBSelect(ByVal commandText As String) As SQLiteDataAdapter
+    Public Function DBSelect(ByVal commandText As String, ByVal SqlKey As String, ByVal SqlValue As String) As SQLiteDataAdapter
         SQLiteDBEnable()
-        Dim sa As New SQLiteDataAdapter(commandText, myconn)
+        Dim DBSql As String = commandText
+        '准守 CA2100：检查 SQL 查询中是否有安全漏洞 '目前还没有解决， 必须复杂化，才安全
+        If SqlKey = "" Or IsNothing(SqlKey) Then
+            debug_write("error DBSelect sql=" & commandText & "  SqlKey=" & SqlKey & "  SqlValue=" & SqlValue)
+        Else
+            DBSql = DBSql & " " & SqlKey & "=" & SqlValue
+        End If
+        'MsgBox("DBSelect sql=" & DBSql)
+        Dim sa As New SQLiteDataAdapter(DBSql, myconn)
         Return sa
     End Function
 

@@ -72,8 +72,8 @@ Public Class Form1
     Dim label6_height As Integer = 0
     Dim length As Double = 0.0
 
-    '打开网页的调用
-    Private Declare Function ShellExecute Lib "shell32.dll" Alias "ShellExecuteA" (ByVal hwngnd As Integer, ByVal lpOperation As String, ByVal lpFile As String, ByVal lpParameters As String, ByVal lpDirectory As String, ByVal nShowCmd As Integer) As Integer
+    '打开网页的调用 CA1060警告，是不合法的，这个注意下
+    'Private Declare Function ShellExecute Lib "shell32.dll" Alias "ShellExecuteA" (ByVal hwngnd As Integer, ByVal lpOperation As String, ByVal lpFile As String, ByVal lpParameters As String, ByVal lpDirectory As String, ByVal nShowCmd As Integer) As Integer
 
 
 
@@ -560,8 +560,8 @@ Public Class Form1
         ''用于 单曲播放0，单曲循环1，顺序播放2，列表播放3，随机播放4  图片变化 (代码行754)
         Try
 
-            mysql = "select tp,autoPlay,playHello,sound_int,sound_mute,playSetting,next_play,id_diaoyong from kmSetting  where id_diaoyong=" & 1
-            DBSelect(mysql).Fill(myds, "kmSet")
+            mysql = "select tp,autoPlay,playHello,sound_int,sound_mute,playSetting,next_play,id_diaoyong from kmSetting  where"
+            DBSelect(mysql, "id_diaoyong", "1").Fill(myds, "kmSet")
 
             If myds.Tables("kmSet").Rows.Count = 1 Then
                 timer3_playSetting = myds.Tables("kmSet").Rows(0).Item("playSetting") '用于 单曲播放0，单曲循环1，顺序....
@@ -999,8 +999,10 @@ Public Class Form1
             Next
 
 
-            mysql = "select * from mlist where Music_name='" & Trim(select_item) & "'"
-            DBSelect(mysql).Fill(myds, "student1")
+            'mysql = "select * from mlist where Music_name='" & Trim(select_item) & "'"
+            Dim sql_music_name As String = "'" & Trim(select_item) & "'"
+            mysql = "select * from mlist where"
+            DBSelect(mysql, "Music_name", sql_music_name).Fill(myds, "student1")
 
             If myds.Tables("student1").Rows.Count = 1 Then
                 Me.Label18.Text = myds.Tables("student1").Rows(0).Item("Music_type")
@@ -1174,7 +1176,7 @@ Public Class Form1
 
         Try
             mysql = "select * from mlist"
-            DBSelect(mysql).Fill(myds, "mlist")
+            DBSelect(mysql, "", "").Fill(myds, "mlist")
 
             If myds.Tables("mlist").Rows.Count > 0 Then
                 For i As Integer = 0 To myds.Tables("mlist").Rows.Count - 1
@@ -1735,8 +1737,10 @@ Public Class Form1
 
                         ' Exit Sub
 
-                        mysql = "select * from mlist where Music_path='" & myfiles(f).Trim & "'"
-                        DBSelect(mysql).Fill(myds, "student1")
+                        'mysql = "select * from mlist where Music_path='" & myfiles(f).Trim & "'"
+                        Dim sql_music_path As String = "'" & myfiles(f).Trim & "'"
+                        mysql = "select * from mlist where "
+                        DBSelect(mysql, "Music_path", sql_music_path).Fill(myds, "student1")
 
                         If myds.Tables("student1").Rows.Count = 1 Then
                             'MsgBox("不能插入相同学号的记录", MsgBoxStyle.OkOnly, "信息提示")
@@ -1928,9 +1932,10 @@ Public Class Form1
 
 
                 ' Exit Sub
-                Dim music_path = TextChangeSqlValue(Me.OpenFileDialog1.FileName.ToString)
-                mysql = "select * from mlist where Music_path='" & music_path & "'"
-                DBSelect(mysql).Fill(myds, "student1")
+                Dim music_path = "'" & TextChangeSqlValue(Me.OpenFileDialog1.FileName.ToString) & "'"
+                'mysql = "select * from mlist where Music_path='" & music_path & "'"
+                mysql = "select * from mlist where"
+                DBSelect(mysql, "Music_path", music_path).Fill(myds, "student1")
 
                 If myds.Tables("student1").Rows.Count = 1 Then
                     MsgBox("该歌曲已经存在了")
@@ -2004,9 +2009,10 @@ Public Class Form1
                 For Each sFile As System.IO.FileInfo In mDir.GetFiles("*.mp3")
                     'System.Diagnostics.Process.Start(sFile.FullName)
                     '打开文件
-                    Dim file_name = TextChangeSqlValue(sFile.Name)
-                    mysql = "select * from mlist where Music_name='" & file_name & "'"
-                    DBSelect(mysql).Fill(myds, "open_music_file")
+                    Dim file_name = "'" & TextChangeSqlValue(sFile.Name) & "'"
+                    'mysql = "select * from mlist where Music_name='" & file_name & "'" '为了合法性
+                    mysql = "select * from mlist where"
+                    DBSelect(mysql, "Music_name", file_name).Fill(myds, "open_music_file")
 
                     If myds.Tables("open_music_file").Rows.Count = 1 Then
 
@@ -2138,9 +2144,10 @@ Public Class Form1
             ' lrc_name = Trim(select_item)
 
             If select_item <> "" Then
-                Dim music_name = TextChangeSqlValue(Trim(select_item))
-                mysql = "select * from mlist where Music_name='" & music_name & "'"
-                DBSelect(mysql).Fill(myds, "Music1")
+                Dim music_name = "'" & TextChangeSqlValue(Trim(select_item)) & "'"
+                'mysql = "select * from mlist where Music_name='" & music_name & "'"
+                mysql = "select * from mlist where"
+                DBSelect(mysql, "Music_name", music_name).Fill(myds, "Music1")
 
                 'MsgBox(myds.Tables("Music1").Rows.Count)
                 If myds.Tables("Music1").Rows.Count = 1 Then
@@ -2298,8 +2305,10 @@ Public Class Form1
 
                 If select_item <> "" Then
                     'MsgBox("ok")
-                    mysql = "select * from mlist where Music_name='" & Trim(select_item) & "'"
-                    DBSelect(mysql).Fill(myds, "Music1")
+                    'mysql = "select * from mlist where Music_name='" & Trim(select_item) & "'"
+                    Dim sql_music_name As String = "'" & Trim(select_item) & "'"
+                    mysql = "select * from mlist where"
+                    DBSelect(mysql, "Music_name", sql_music_name).Fill(myds, "Music1")
                     'MsgBox(myds.Tables("Music1").Rows.Count)
                     If myds.Tables("Music1").Rows.Count = 1 Then
 
@@ -2346,7 +2355,8 @@ Public Class Form1
 
                 If select_item <> "" Then
                     'MsgBox("ok")
-                    mysql = "delete from mlist where Music_name='" & Trim(select_item) & "'"
+                    Dim sql_music_name As String = Trim(select_item)
+                    mysql = "delete from mlist where Music_name='" & sql_music_name & "'"
                     DBExecuteNonQueryAndNonInsert(mysql)
                     myds.Clear()
 
@@ -2390,8 +2400,10 @@ Public Class Form1
 
                 If select_item <> "" Then
                     If MsgBox("确定删除文件 '" & Me.ListBox1.SelectedItem & "'", 1 + 48, "彻底删除文件") = MsgBoxResult.Ok Then
-                        mysql = "select * from mlist where Music_name='" & Trim(select_item) & "'"
-                        DBSelect(mysql).Fill(myds, "Music1")
+                        'mysql = "select * from mlist where Music_name='" & Trim(select_item) & "'"
+                        Dim sql_music_name As String = "'" & Trim(select_item) & "'"
+                        mysql = "select * from mlist where"
+                        DBSelect(mysql, "Music_name", sql_music_name).Fill(myds, "Music1")
 
                         'MsgBox(myds.Tables("Music1").Rows.Count)
                         If myds.Tables("Music1").Rows.Count = 1 Then
@@ -3338,7 +3350,8 @@ Public Class Form1
     End Sub
 
     Private Sub 下载最新版本ToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles 下载最新版本ToolStripMenuItem.Click
-        ShellExecute(0, "open", "http://pan.baidu.com/s/1sjz5tIt ", CStr(0), CStr(0), 1)
+        'ShellExecute(0, "open", "http://pan.baidu.com/s/1sjz5tIt ", CStr(0), CStr(0), 1)
+        System.Diagnostics.Process.Start("http://pan.baidu.com/s/1sjz5tIt")
     End Sub
 
 

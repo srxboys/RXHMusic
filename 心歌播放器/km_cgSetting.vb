@@ -137,8 +137,8 @@ Public Class km_cgSetting
     Private Sub open_kmSetting()
         Try
             Dim mysql As String
-            mysql = "select autoPlay,playHello,tp,kjOpen from kmSetting  where id_diaoyong=" & 1
-            DBSelect(mysql).Fill(myds, "kmSet")
+            mysql = "select autoPlay,playHello,tp,kjOpen from kmSetting  where"
+            DBSelect(mysql, "id_diaoyong", "1").Fill(myds, "kmSet")
 
             If myds.Tables("kmSet").Rows.Count = 1 Then
                 If myds.Tables("kmSet").Rows(0).Item("autoPlay") = 1 Then

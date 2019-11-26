@@ -95,29 +95,27 @@ Module Module1
             FileClose()
             DeskMusic.Timer5.Enabled = False
             Form1.Timer5.Enabled = False
-            'MsgBox(ex.Message & vbCrLf & "getword获取歌词")
-            debug_write("模块   getword获取歌词 'GetWord() ' 行 112 " & ex.Message & vbCrLf)
-
+            ReportError(ex)
         End Try
 
     End Sub
     '提取某句歌词
     Public Function Sentence(ByVal word As String) As String
+        Dim Result As String = ""
         Try
             Dim n As Integer
-            Sentence = ""
             n = 1
             Do While (1)
                 n = InStr(n + 1, word, "]")
                 If InStr(n + 1, word, "]") = 0 Then
-                    Sentence = Trim(Mid(word, n + 1))
+                    Result = Trim(Mid(word, n + 1))
                     Exit Do
                 End If
             Loop
         Catch ex As Exception
-            'MsgBox(ex.Message)
-            debug_write("模块   Sentence获取歌词  行 131 " & ex.Message & vbCrLf)
+            ReportError(ex)
         End Try
+        Return Result
     End Function
 
     '插入位置

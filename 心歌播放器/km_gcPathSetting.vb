@@ -43,8 +43,8 @@ Public Class km_gcPathSetting
     Private Sub open_kmSetting()
         Try
             Dim mysql As String
-            mysql = "select lrcPath,id_diaoyong from kmSetting  where id_diaoyong=" & 1
-            DBSelect(mysql).Fill(myds, "kmSet1")
+            mysql = "select lrcPath,id_diaoyong from kmSetting  where"
+            DBSelect(mysql, "id_diaoyong", "1").Fill(myds, "kmSet1")
 
             If myds.Tables("kmSet1").Rows.Count = 1 Then
                 Me.TextBox1.Text = myds.Tables("kmSet1").Rows(0).Item("lrcPath").ToString
