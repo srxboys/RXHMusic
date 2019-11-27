@@ -99,13 +99,8 @@ Public Class km_cgSetting
         Try
             ' Setting_boolean = False
             Dim mysql As String
-            Dim mycmd As New OleDbCommand
-            myconn.Open()
             mysql = "update kmSetting set " & "autoPlay=" & autoPlay & "," & "playHello=" & playHello & "," & "tp=" & tp & "," & "kjOpen=" & kjOpen & " where id_diaoyong=" & 1
-            mycmd.Connection = myconn
-            mycmd.CommandText = mysql
-            mycmd.ExecuteNonQuery()
-            myconn.Close()
+            DBExecuteNonQueryAndNonInsert(mysql)
             myds.Clear()
             Form1.tp = tp
 
@@ -120,9 +115,9 @@ Public Class km_cgSetting
            
         Catch ex As Exception
             'MsgBox("常规设置" & vbCrLf & ex.Message)
-            debug_write("km_cgSetting.vb 常规设置 行123" & ex.Message.ToString)
+            ReportError(ex)
+            DBClose()
             myds.Clear()
-            myconn.Close()
         End Try
       
     End Sub
@@ -141,10 +136,10 @@ Public Class km_cgSetting
     '打开前先判断数据库
     Private Sub open_kmSetting()
         Try
-            myconn.Open()
-            Dim myda1 As New OleDbDataAdapter("select autoPlay,playHello,tp,kjOpen from kmSetting  where id_diaoyong=" & 1, myconn)
-            myda1.Fill(myds, "kmSet")
-            myconn.Close()
+            Dim mysql As String
+            mysql = "select autoPlay,playHello,tp,kjOpen from kmSetting  where"
+            DBSelect(mysql, "id_diaoyong", "1").Fill(myds, "kmSet")
+
             If myds.Tables("kmSet").Rows.Count = 1 Then
                 If myds.Tables("kmSet").Rows(0).Item("autoPlay") = 1 Then
                     Me.CheckBox1.Checked = True
@@ -168,8 +163,8 @@ Public Class km_cgSetting
             myds.Clear()
         Catch ex As Exception
             'MsgBox("常规设置" & vbCrLf & ex.Message)
-            debug_write("km_cgSetting.vb 常规设置 行171" & ex.Message.ToString)
-            myconn.Close()
+            ReportError(ex)
+            DBClose()
             myds.Clear()
         End Try
     End Sub

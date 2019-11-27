@@ -8,8 +8,6 @@
 '       作者:srxboys
 '       日期：20140723
 
-Imports System.Data.OleDb
-Imports System.IO
 
 Module Module1
 
@@ -22,8 +20,8 @@ Module Module1
 
     Public DeskMusic_state As Integer = 0   '桌面歌词是否关闭
 
-    '数据库
-    Public myconn As New OleDbConnection("provider=Microsoft.jet.oledb.4.0;" & "Data Source='" & Application.StartupPath & "\kmplay.mdb" & "'")
+    '数据库 access
+    'Public myconn As New OleDbConnection("provider=Microsoft.jet.oledb.4.0;" & "Data Source='" & Application.StartupPath & "\kmplay.mdb" & "'")
 
     Public Setting_boolean As Boolean = False
 
@@ -41,23 +39,6 @@ Module Module1
     '////////////////////////////////////////////////////////局部变量
     Dim i, j As Integer
 
-
-    Public Sub debug_write(ByVal txt As String)
-        Try
-            Dim fs As FileStream
-            fs = New FileStream(Application.StartupPath & "\debug.txt", FileMode.Append, FileAccess.Write)
-            Dim s As StreamWriter
-            s = New StreamWriter(fs)
-            s.AutoFlush = False
-            ' s.NewLine
-            s.Write(" " & Chr(13) & Chr(10) & Chr(13) & Chr(10) & txt & "。 日期：" & Now())
-            s.Close()
-            fs.Close()
-        Catch ex As Exception
-
-            MsgBox("debug 没有写入" & ex.Message)
-        End Try
-    End Sub
 
     '读取文件歌词
     Public Sub GetWord(ByVal path As String, ByVal WordList As ListBox, ByVal TimeList As ListBox)
@@ -114,29 +95,27 @@ Module Module1
             FileClose()
             DeskMusic.Timer5.Enabled = False
             Form1.Timer5.Enabled = False
-            'MsgBox(ex.Message & vbCrLf & "getword获取歌词")
-            debug_write("模块   getword获取歌词 'GetWord() ' 行 112 " & ex.Message & vbCrLf)
-
+            ReportError(ex)
         End Try
 
     End Sub
     '提取某句歌词
     Public Function Sentence(ByVal word As String) As String
+        Dim Result As String = ""
         Try
             Dim n As Integer
-            Sentence = ""
             n = 1
             Do While (1)
                 n = InStr(n + 1, word, "]")
                 If InStr(n + 1, word, "]") = 0 Then
-                    Sentence = Trim(Mid(word, n + 1))
+                    Result = Trim(Mid(word, n + 1))
                     Exit Do
                 End If
             Loop
         Catch ex As Exception
-            'MsgBox(ex.Message)
-            debug_write("模块   Sentence获取歌词  行 131 " & ex.Message & vbCrLf)
+            ReportError(ex)
         End Try
+        Return Result
     End Function
 
     '插入位置
@@ -150,6 +129,56 @@ Module Module1
             End If
         Next
     End Function
+
+    Public Function StrReplace(ByVal CurrentString As String, ByVal SearchString As String, ByVal ReplaceWith As String) As String
+
+        Dim result As String = ""
+        result = Replace(CurrentString, SearchString, ReplaceWith, 1, -1, 0)
+        Return result
+        'Replace(expression, find, ReplaceWith[, start[, count[, compare]]])
+        'Replace函数语法有如下几部分：
+
+        '部分 描述 
+        'expression 必需的。字符串表达式， 包含要替换的子字符串。 
+        'find 必需的。要搜索到的子字符串。 
+        'ReplaceWith 必需的。用来替换的子字符串。 
+        'start 可选的。在表达式中子字符串搜索的开始位置。如果忽略， 假定从1开始。 
+        'count 可选的。子字符串进行替换的次数。如果忽略， 缺省值是 –1， 它表明进行所有可能的替换。 
+        'compare 可选的。数字值， 表示判别子字符串时所用的比较方式。关于其值， 请参阅“设置值”部分。 
+
+
+
+        '设置值
+
+        'compare参数的设置值如下：
+        '        常数 值 描述 
+        'vbUseCompareOption –1 使用Option Compare语句的设置值来执行比较。 
+        'vbBinaryCompare 0 执行二进制比较。 
+        'vbTextCompare 1 执行文字比较。 
+        ' 不可用 vbDatabaseCompare 2 仅用于Microsoft Access。基于您的数据库的信息执行比较。 
+
+    End Function
+
+    Public Function TextChangeSqlValue(ByVal Value As String) As String
+        Dim text_space = StrReplace(Value, " ", "￥")
+        Dim text_comma = StrReplace(text_space, ",", "_")
+        Dim text_single_mark = StrReplace(text_comma, "'", "`")
+        Dim text_double_mark = StrReplace(text_single_mark, Chr(34), "``")
+        Dim text_start = StrReplace(text_double_mark, "*", "^")
+        'debug_write("replace" & Value & "=>" & text_start)
+        Return text_start
+    End Function
+
+    Public Function TextRecoveryName(ByVal Value As String) As String
+        Dim text_space = StrReplace(Value, "￥", " ")
+        Dim text_comma = StrReplace(text_space, "_", ",")
+        Dim text_single_mark = StrReplace(text_comma, "`", "'")
+        Dim text_double_mark = StrReplace(text_single_mark, "``", Chr(34))
+        Dim text_start = StrReplace(text_double_mark, "^", "*")
+        'debug_write("replace" & Value & "=>" & text_start)
+        Return text_start
+    End Function
+
 
 
 End Module

@@ -1,4 +1,4 @@
-Imports System.Data.OleDb
+
 Imports System.IO
 Imports System.Random
 Imports System.IO.Path
@@ -19,7 +19,6 @@ Public Class Form1
     Dim time_left As Integer
     Dim time_right As Integer
 
-    Dim myda As New OleDbDataAdapter("select * from mList", myconn)
     Dim myds As New DataSet
     Dim mybm As BindingManagerBase
 
@@ -73,8 +72,8 @@ Public Class Form1
     Dim label6_height As Integer = 0
     Dim length As Double = 0.0
 
-    '打开网页的调用
-    Private Declare Function ShellExecute Lib "shell32.dll" Alias "ShellExecuteA" (ByVal hwngnd As Integer, ByVal lpOperation As String, ByVal lpFile As String, ByVal lpParameters As String, ByVal lpDirectory As String, ByVal nShowCmd As Integer) As Integer
+    '打开网页的调用 CA1060警告，是不合法的，这个注意下
+    'Private Declare Function ShellExecute Lib "shell32.dll" Alias "ShellExecuteA" (ByVal hwngnd As Integer, ByVal lpOperation As String, ByVal lpFile As String, ByVal lpParameters As String, ByVal lpDirectory As String, ByVal nShowCmd As Integer) As Integer
 
 
 
@@ -148,6 +147,8 @@ Public Class Form1
 
 
     Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        debug_write("----------------------------------------------------------" & vbCrLf)
+
         'Me.BackColor = Color.Black
         DeskMusic.Show()
         DeskMusic.Hide()
@@ -558,10 +559,10 @@ Public Class Form1
 
         ''用于 单曲播放0，单曲循环1，顺序播放2，列表播放3，随机播放4  图片变化 (代码行754)
         Try
-            myconn.Open()
-            Dim myda1 As New OleDbDataAdapter("select tp,autoPlay,playHello,sound_int,sound_mute,playSetting,next_play,id_diaoyong from kmSetting  where id_diaoyong=" & 1, myconn)
-            myda1.Fill(myds, "kmSet")
-            myconn.Close()
+
+            mysql = "select tp,autoPlay,playHello,sound_int,sound_mute,playSetting,next_play,id_diaoyong from kmSetting  where"
+            DBSelect(mysql, "id_diaoyong", "1").Fill(myds, "kmSet")
+
             If myds.Tables("kmSet").Rows.Count = 1 Then
                 timer3_playSetting = myds.Tables("kmSet").Rows(0).Item("playSetting") '用于 单曲播放0，单曲循环1，顺序....
 
@@ -596,9 +597,8 @@ Public Class Form1
             End If
             myds.Clear()
         Catch ex As Exception
-            MsgBox(ex.Message)
-            debug_write("keSetting的数据库读取->歌曲模式错误 行572 " & ex.Message)
-            myconn.Close()
+            ReportError(ex)
+            DBClose()
             myds.Clear()
         End Try
         ' Setting_boolean = False   '没用了
@@ -983,7 +983,7 @@ Public Class Form1
 
             Dim i, j As Integer
             Dim select_item As String
-            'myconn.Close()
+
             j = 0
             select_item = ""
             select_item = aa
@@ -998,27 +998,23 @@ Public Class Form1
                 End If
             Next
 
-            Dim mycmd As New OleDbCommand
-            mysql = "select * from mlist where Music_name='" & Trim(select_item) & "'"
 
-            'MsgBox(mysql)  '。。。。。。。为测试所用
+            'mysql = "select * from mlist where Music_name='" & Trim(select_item) & "'"
+            Dim sql_music_name As String = "'" & Trim(select_item) & "'"
+            mysql = "select * from mlist where"
+            DBSelect(mysql, "Music_name", sql_music_name).Fill(myds, "student1")
 
-            myconn.Open()
-            Dim myda1 As New OleDbDataAdapter(mysql, myconn)
-            myda1.Fill(myds, "student1")
-            myconn.Close()
             If myds.Tables("student1").Rows.Count = 1 Then
-                Me.Label18.Text = myds.Tables("student1").Rows(0).Item(9)
-                Me.Label30.Text = myds.Tables("student1").Rows(0).Item(4)
+                Me.Label18.Text = myds.Tables("student1").Rows(0).Item("Music_type")
+                Me.Label30.Text = myds.Tables("student1").Rows(0).Item("Music_playTime")
             End If
             Me.Label25.Text = "创建：" & Me.Label18.Text
             Me.Label29.Text = "播放次数：" & Me.Label30.Text
             Auther_Message.Auther_Message_change(1, False)
             myds.Clear()
         Catch ex As Exception
-            'MsgBox(ex.Message)
-            debug_write("label18_show_date中的pictureBox6 创建时间label25  或者  播放次数label29。 行 968 " & ex.Message.ToString)
-            myconn.Close()
+            ReportError(ex)
+            DBClose()
             myds.Clear()
         End Try
 
@@ -1132,8 +1128,7 @@ Public Class Form1
                     随机播放ToolStripMenuItem1.CheckState = CheckState.Checked
             End Select
         Catch ex As Exception
-            'MsgBox("调用程序： mplay_play_moshi()" & vbCrLf & ex.Message)
-            debug_write("startKM_play_moshi() 行1110 " & ex.Message.ToString)
+            ReportError(ex)
         End Try
     End Sub
     ''用于 单曲播放0，单曲循环1，顺序播放2，列表播放3，随机播放4  图片变化 (代码行754)
@@ -1143,19 +1138,12 @@ Public Class Form1
         '把变化写入数据库
         Try
             ' Setting_boolean = False
-            Dim mysql As String
-            Dim mycmd As New OleDbCommand
-            myconn.Open()
+
             mysql = "update kmSetting set " & "playSetting=" & timer3_playSetting & " where id_diaoyong=" & 1
-            mycmd.Connection = myconn
-            mycmd.CommandText = mysql
-            mycmd.ExecuteNonQuery()
-            myconn.Close()
-            myds.Clear()
+            DBExecuteNonQueryAndNonInsert(mysql)
         Catch ex As Exception
-            MsgBox(ex.Message)
-            debug_write("Label5_pic_show 把 播放模式mplay_play_moshi()写入数据库 行1037 " & ex.Message.ToString)
-            myconn.Close()
+            ReportError(ex)
+            DBClose()
             myds.Clear()
         End Try
 
@@ -1185,25 +1173,23 @@ Public Class Form1
     '刷新显示歌曲列表
     Private Sub list_cls_add()
         Me.ListBox1.Items.Clear()
-        Dim mycmd As New OleDbCommand
 
         Try
             mysql = "select * from mlist"
+            DBSelect(mysql, "", "").Fill(myds, "mlist")
 
-            myconn.Open()
-            Dim myda1 As New OleDbDataAdapter(mysql, myconn)
-            myda1.Fill(myds, "mlist")
-            myconn.Close()
             If myds.Tables("mlist").Rows.Count > 0 Then
                 For i As Integer = 0 To myds.Tables("mlist").Rows.Count - 1
-                    Me.ListBox1.Items.Add(i & "  " & myds.Tables("mlist").Rows(i).Item(1))
+                    Dim music_name = TextRecoveryName(myds.Tables("mlist").Rows(i).Item("Music_name"))
+                    Me.ListBox1.Items.Add(i & "  " & music_name)
                 Next
             End If
             myds.Clear()
         Catch ex As Exception
             '
-            MsgBox("请关闭桌面打开的数据库")
-            myconn.Close()
+            MsgBox("歌曲列表 加载失败,请关闭桌面打开的数据库")
+            ReportError(ex)
+            DBClose()
             myds.Clear()
         End Try
         Me.ListBox1.Refresh()
@@ -1750,28 +1736,21 @@ Public Class Form1
                         End If
 
                         ' Exit Sub
-                        Dim mycmd As New OleDbCommand
-                        mysql = "select * from mlist where Music_path='" & myfiles(f).Trim & "'"
 
-                        'MsgBox(mysql)  '。。。。。。。为测试所用
+                        'mysql = "select * from mlist where Music_path='" & myfiles(f).Trim & "'"
+                        Dim sql_music_path As String = "'" & myfiles(f).Trim & "'"
+                        mysql = "select * from mlist where "
+                        DBSelect(mysql, "Music_path", sql_music_path).Fill(myds, "student1")
 
-                        myconn.Open()
-                        Dim myda1 As New OleDbDataAdapter(mysql, myconn)
-                        myda1.Fill(myds, "student1")
-                        myconn.Close()
                         If myds.Tables("student1").Rows.Count = 1 Then
                             'MsgBox("不能插入相同学号的记录", MsgBoxStyle.OkOnly, "信息提示")
                         Else
-                            myconn.Open()
+                            Dim last_music_name = TextChangeSqlValue(Music_name)
+                            Dim last_music_path = TextChangeSqlValue(myfiles(f).Trim)
+                            Dim last_music_auther = TextChangeSqlValue(Music_auther)
 
-                            mysql = "insert into mlist (Music_name,Music_path,Music_playTime,Music_auther,Music_zj,Music_M,Music_type) values(" _
-                            & "'" & Music_name & "','" & myfiles(f).Trim & "','" & Music_playTime & "','" & Music_auther & _
-                             "','" & Music_zj & "'," & Music_M & ",'" & music_type & "')"
-                            mycmd.Connection = myconn
-                            mycmd.CommandText = mysql
-                            mycmd.ExecuteNonQuery()
-                            myconn.Close()
-
+                            DBTableMlistInsert(last_music_name, last_music_path, Music_playTime,
+                            last_music_auther, Music_zj, Music_M, music_type)
                         End If
                         myds.Clear()
 
@@ -1784,9 +1763,10 @@ Public Class Form1
             list_cls_add()
             Me.ListBox1.SelectedIndex = list_SingleSelectIndex
         Catch ex As Exception
-            myconn.Close()
+            DBClose()
             myds.Clear()
             MsgBox(ex.Message)
+            ReportError(ex)
         End Try
 
     End Sub
@@ -1952,27 +1932,20 @@ Public Class Form1
 
 
                 ' Exit Sub
-                Dim mycmd As New OleDbCommand
-                mysql = "select * from mlist where Music_path='" & Me.OpenFileDialog1.FileName.ToString & "'"
+                Dim music_path = "'" & TextChangeSqlValue(Me.OpenFileDialog1.FileName.ToString) & "'"
+                'mysql = "select * from mlist where Music_path='" & music_path & "'"
+                mysql = "select * from mlist where"
+                DBSelect(mysql, "Music_path", music_path).Fill(myds, "student1")
 
-                'MsgBox(mysql)  '。。。。。。。为测试所用
-
-                myconn.Open()
-                Dim myda1 As New OleDbDataAdapter(mysql, myconn)
-                myda1.Fill(myds, "student1")
-                myconn.Close()
                 If myds.Tables("student1").Rows.Count = 1 Then
-                    'MsgBox("不能插入相同学号的记录", MsgBoxStyle.OkOnly, "信息提示")
+                    MsgBox("该歌曲已经存在了")
                 Else
-                    myconn.Open()
+                    Dim last_music_name = TextChangeSqlValue(Music_name)
+                    Dim last_music_path = music_path
+                    Dim last_music_auther = TextChangeSqlValue(Music_auther)
 
-                    mysql = "insert into mlist (Music_name,Music_path,Music_playTime,Music_auther,Music_zj,Music_M,Music_type) values(" _
-                    & "'" & Music_name & "','" & Me.OpenFileDialog1.FileName.ToString & "','" & Music_playTime & "','" & Music_auther & _
-                     "','" & Music_zj & "'," & Music_M & ",'" & music_type & "')"
-                    mycmd.Connection = myconn
-                    mycmd.CommandText = mysql
-                    mycmd.ExecuteNonQuery()
-                    myconn.Close()
+                    DBTableMlistInsert(last_music_name, last_music_path, Music_playTime,
+                            last_music_auther, Music_zj, Music_M, music_type)
 
                 End If
                 myds.Clear()
@@ -1990,8 +1963,8 @@ Public Class Form1
             ' list_cls_add()
         Catch ex As Exception
             ' MsgBox(Me.OpenFileDialog1.DefaultExt & ex.Message)
-            debug_write(" Label8_Click 添加单曲错误  行1717 " & ex.Message)
-            myconn.Close()
+            ReportError(ex)
+            DBClose()
             myds.Clear()
         End Try
 
@@ -2036,14 +2009,12 @@ Public Class Form1
                 For Each sFile As System.IO.FileInfo In mDir.GetFiles("*.mp3")
                     'System.Diagnostics.Process.Start(sFile.FullName)
                     '打开文件
-                    Dim mycmd As New OleDbCommand
-                    mysql = "select * from mlist where Music_name='" & sFile.Name & "'"
+                    Dim file_name = "'" & TextChangeSqlValue(sFile.Name) & "'"
+                    'mysql = "select * from mlist where Music_name='" & file_name & "'" '为了合法性
+                    mysql = "select * from mlist where"
+                    DBSelect(mysql, "Music_name", file_name).Fill(myds, "open_music_file")
 
-                    myconn.Open()
-                    Dim myda1 As New OleDbDataAdapter(mysql, myconn)
-                    myda1.Fill(myds, "student1")
-                    myconn.Close()
-                    If myds.Tables("student1").Rows.Count = 1 Then
+                    If myds.Tables("open_music_file").Rows.Count = 1 Then
 
                     Else
                         Dim Music_auther, Music_zj As String
@@ -2086,14 +2057,13 @@ Public Class Form1
 
                         Next
 
+                        Dim last_music_name = TextChangeSqlValue(sFile.Name)
+                        Dim last_music_path = TextChangeSqlValue(sFile.FullName)
+                        Dim last_music_auther = TextChangeSqlValue(Music_auther)
 
-                        myconn.Open()
-                        mysql = "insert into mlist (Music_name,Music_path,Music_auther,Music_zj,Music_M,Music_type) values(" _
-                        & "'" & sFile.Name & "','" & sFile.FullName & "','" & Music_auther & "','" & Music_zj & "','" & sFile.Length & "','" & sFile.Extension & "')"
-                        mycmd.Connection = myconn
-                        mycmd.CommandText = mysql
-                        mycmd.ExecuteNonQuery()
-                        myconn.Close()
+                        DBTableMlistInsert(last_music_name, last_music_path, Music_playTime,
+                                           last_music_auther, Music_zj,
+                                           sFile.Length, sFile.Extension)
                         i = i + 1
                         Me.ListBox1.Items.Add(i & " " & sFile.Name)
                     End If
@@ -2122,9 +2092,9 @@ Public Class Form1
             End If
 
         Catch ex As Exception
-            'MsgBox(Me.OpenFileDialog1.DefaultExt & ex.Message)
-            debug_write("me.Label9_Click  添加文件夹错误 行1843 " & ex.Message)
-            myconn.Close()
+            MsgBox(Me.OpenFileDialog1.DefaultExt & ex.Message)
+            ReportError(ex)
+            DBClose()
         End Try
     End Sub
     Private Sub Label9_MouseDown(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles Label9.MouseDown
@@ -2154,7 +2124,7 @@ Public Class Form1
 
         Dim i, j As Integer
         Dim select_item As String
-        'myconn.Close()
+
 
         Try
 
@@ -2174,13 +2144,11 @@ Public Class Form1
             ' lrc_name = Trim(select_item)
 
             If select_item <> "" Then
-                'MsgBox("ok")
-                mysql = "select * from mlist where Music_name='" & Trim(select_item) & "'"
+                Dim music_name = "'" & TextChangeSqlValue(Trim(select_item)) & "'"
+                'mysql = "select * from mlist where Music_name='" & music_name & "'"
+                mysql = "select * from mlist where"
+                DBSelect(mysql, "Music_name", music_name).Fill(myds, "Music1")
 
-                myconn.Open()
-                Dim myda1 As New OleDbDataAdapter(mysql, myconn)
-                myda1.Fill(myds, "Music1")
-                myconn.Close()
                 'MsgBox(myds.Tables("Music1").Rows.Count)
                 If myds.Tables("Music1").Rows.Count = 1 Then
 
@@ -2192,13 +2160,15 @@ Public Class Form1
                     'Dim mwj As New System.IO.FileAttributes(mDir)
 
                     ' MsgBox(myds.Tables("Music1").Rows(0).Item(2).ToString)
-                    If File.Exists(myds.Tables("Music1").Rows(0).Item(2).ToString) Then
+                    Dim music_path = TextRecoveryName(myds.Tables("Music1").Rows(0).Item("Music_path").ToString)
+                    If File.Exists(music_path) Then
 
 
                         Me.mPlay_play_state = 0
-                        Me.OpenFileDialog1.FileName = myds.Tables("Music1").Rows(0).Item(2).ToString
-                        Music_PlayCi = myds.Tables("Music1").Rows(0).Item(4)
+                        Me.OpenFileDialog1.FileName = music_path
+                        Music_PlayCi = myds.Tables("Music1").Rows(0).Item("Music_playCi")
                         Music_PlayCi = Music_PlayCi + 1
+                        'MsgBox("2162 ListBox1_MouseDoubleClick=" & Me.OpenFileDialog1.FileName)
                         Me.AxWindowsMediaPlayer1.URL = Me.OpenFileDialog1.FileName
                         '  MsgBox("ok")
                         Me.Label21.Text = Trim(select_item)
@@ -2212,25 +2182,17 @@ Public Class Form1
                         Call Me.Label11_Click(Nothing, Nothing)
                         myds.Clear()
 
-                        Dim mycmd As New OleDbCommand
-                        myconn.Open()
-                        mysql = "update mlist set " & "Music_playCi=" & Music_PlayCi & "  where Music_name='" & Trim(select_item) & "'"
-                        mycmd.Connection = myconn
-                        mycmd.CommandText = mysql
-                        mycmd.ExecuteNonQuery()
-                        myconn.Close()
+                        mysql = "update mlist set " & "Music_playCi=" & Music_PlayCi & "  where Music_name='" & music_name & "'"
+                        DBExecuteNonQueryAndNonInsert(mysql)
 
 
                         list_mouseClick_boolean = True '让picturebox6里的歌曲名 显示的长度，不能大于picturebox6的大
                     Else
+                        MsgBox("music_path=" & music_path & "》》》music_name=" & music_name)
                         If (MsgBox("数据库中的歌曲路径出错  是否删除此歌曲", MsgBoxStyle.OkCancel) = MsgBoxResult.Ok) Then
-                            Dim mycmd As New OleDbCommand
-                            myconn.Open()
-                            mysql = "delete * from mlist  where Music_name='" & Trim(select_item) & "'"
-                            mycmd.Connection = myconn
-                            mycmd.CommandText = mysql
-                            mycmd.ExecuteNonQuery()
-                            myconn.Close()
+
+                            mysql = "delete * from mlist  where Music_name='" & music_name & "'"
+                            DBExecuteNonQueryAndNonInsert(mysql)
                             myds.Clear()
 
                             ListBox1.Items.Remove(Me.ListBox1.SelectedItem)
@@ -2246,8 +2208,8 @@ Public Class Form1
             End If
         Catch ex As Exception
             ' MsgBox(ex.Message)
-            debug_write("me.ListBox1_MouseDoubleClick 歌曲列表单机播放歌曲错误 行1947 " & ex.Message)
-            myconn.Close()
+            ReportError(ex)
+            DBClose()
             myds.Clear()
         End Try
 
@@ -2289,7 +2251,7 @@ Public Class Form1
         '....................................ListBox1 右击 菜单 搜索菜单变化 
         Dim i, j As Integer
         Dim select_item As String
-        'myconn.Close()
+
         j = 0
         Try
             select_item = ""
@@ -2310,7 +2272,7 @@ Public Class Form1
             ' Me.Label24.Text = Me.ListBox1.SelectedItem
         Catch ex As Exception
             'MsgBox(ex.Message)
-            debug_write("me.ListBox1_MouseUp 搜索错误 行2011 " & ex.Message.ToString)
+            ReportError(ex)
         End Try
         '....................................ListBox1 右击 菜单 搜索菜单变化 
 
@@ -2324,7 +2286,7 @@ Public Class Form1
         If Me.ListBox1.SelectedItem <> "" Then
             Dim i, j As Integer
             Dim select_item As String
-            'myconn.Close()
+
             j = 0
             Try
                 select_item = ""
@@ -2343,25 +2305,23 @@ Public Class Form1
 
                 If select_item <> "" Then
                     'MsgBox("ok")
-                    mysql = "select * from mlist where Music_name='" & Trim(select_item) & "'"
-
-                    myconn.Open()
-                    Dim myda1 As New OleDbDataAdapter(mysql, myconn)
-                    myda1.Fill(myds, "Music1")
-                    myconn.Close()
+                    'mysql = "select * from mlist where Music_name='" & Trim(select_item) & "'"
+                    Dim sql_music_name As String = "'" & Trim(select_item) & "'"
+                    mysql = "select * from mlist where"
+                    DBSelect(mysql, "Music_name", sql_music_name).Fill(myds, "Music1")
                     'MsgBox(myds.Tables("Music1").Rows.Count)
                     If myds.Tables("Music1").Rows.Count = 1 Then
 
                         '打开文件的方法：如下：（文件类型，只要系统认得，就可以，下面的是路径，不是从路径到文件）
-                        System.Diagnostics.Process.Start(Mid(myds.Tables("Music1").Rows(0).Item(2), 1, Len(myds.Tables("Music1").Rows(0).Item(2)) - Len(Trim(select_item))))
+                        Dim music_path = TextRecoveryName(myds.Tables("Music1").Rows(0).Item("Music_path"))
+                        System.Diagnostics.Process.Start(Mid(music_path, 1, Len(music_path) - Len(Trim(select_item))))
                         'System.Diagnostics.Process
                     End If
                     myds.Clear()
                 End If
             Catch ex As Exception
-                'MsgBox(ex.Message)
-                debug_write("me.打开文件目录ToolStripMenuItem_Click 错误 行2061  " & ex.Message.ToString)
-                myconn.Close()
+                ReportError(ex)
+                DBClose()
                 myds.Clear()
             End Try
         End If
@@ -2374,7 +2334,7 @@ Public Class Form1
         If Me.ListBox1.SelectedItem <> "" Then
             Dim i, j As Integer
             Dim select_item As String
-            'myconn.Close()
+
             j = 0
             Try
                 select_item = ""
@@ -2395,23 +2355,16 @@ Public Class Form1
 
                 If select_item <> "" Then
                     'MsgBox("ok")
-                    Dim mycmd As New OleDbCommand
-                    myconn.Open()
-                    mysql = "delete from mlist where Music_name='" & Trim(select_item) & "'"
-                    mycmd.Connection = myconn
-                    mycmd.CommandText = mysql
-                    mycmd.ExecuteNonQuery()
-                    myconn.Close()
+                    Dim sql_music_name As String = Trim(select_item)
+                    mysql = "delete from mlist where Music_name='" & sql_music_name & "'"
+                    DBExecuteNonQueryAndNonInsert(mysql)
                     myds.Clear()
-
-
 
                     list_cls_add()
                 End If
             Catch ex As Exception
-                ' MsgBox(ex.Message)
-                debug_write("删除ToolStripMenuItem1_Click 错误 行2111  " & ex.Message.ToString)
-                myconn.Close()
+                ReportError(ex)
+                DBClose()
                 myds.Clear()
             End Try
 
@@ -2426,7 +2379,7 @@ Public Class Form1
         If Me.ListBox1.SelectedItem <> "" Then
             Dim i, j As Integer
             Dim select_item As String
-            'myconn.Close()
+
             j = 0
             Try
                 select_item = ""
@@ -2447,31 +2400,24 @@ Public Class Form1
 
                 If select_item <> "" Then
                     If MsgBox("确定删除文件 '" & Me.ListBox1.SelectedItem & "'", 1 + 48, "彻底删除文件") = MsgBoxResult.Ok Then
-                        mysql = "select * from mlist where Music_name='" & Trim(select_item) & "'"
+                        'mysql = "select * from mlist where Music_name='" & Trim(select_item) & "'"
+                        Dim sql_music_name As String = "'" & Trim(select_item) & "'"
+                        mysql = "select * from mlist where"
+                        DBSelect(mysql, "Music_name", sql_music_name).Fill(myds, "Music1")
 
-                        myconn.Open()
-                        Dim myda1 As New OleDbDataAdapter(mysql, myconn)
-                        myda1.Fill(myds, "Music1")
-                        myconn.Close()
                         'MsgBox(myds.Tables("Music1").Rows.Count)
                         If myds.Tables("Music1").Rows.Count = 1 Then
 
-
-                            File.Delete(myds.Tables("Music1").Rows(0).Item(2))
+                            Dim music_path = TextRecoveryName(myds.Tables("Music1").Rows(0).Item("Music_path"))
+                            File.Delete(music_path)
 
                             ' MsgBox(myds.Tables("Music1").Rows(0).Item(2))
                         End If
                         myds.Clear()
 
-
-                        Dim mycmd As New OleDbCommand
-                        myconn.Open()
-                        mysql = "delete from mlist where Music_name='" & Trim(select_item) & "'"
-                        mycmd.Connection = myconn
-                        mycmd.CommandText = mysql
-                        mycmd.ExecuteNonQuery()
-                        myconn.Close()
-                        myds.Clear()
+                        Dim music_name = TextChangeSqlValue(Trim(select_item))
+                        mysql = "delete from mlist where Music_name='" & music_name & "'"
+                        DBExecuteNonQueryAndNonInsert(mysql)
                     End If
                     list_cls_add()
 
@@ -2485,9 +2431,8 @@ Public Class Form1
                     End If
                 End If
             Catch ex As Exception
-                MsgBox(ex.Message)
-                debug_write("彻底删除包括本地文件ToolStripMenuItem_Click 行2187 " & ex.Message.ToString)
-                myconn.Close()
+                ReportError(ex)
+                DBClose()
                 myds.Clear()
             End Try
 
@@ -2845,18 +2790,12 @@ Public Class Form1
 
         Try
             ' Setting_boolean = False
-            Dim mysql As String
-            Dim mycmd As New OleDbCommand
-            myconn.Open()
             mysql = "update kmSetting set " & "sound_mute=" & pictureBox8_sound_state & " where id_diaoyong=" & 1
-            mycmd.Connection = myconn
-            mycmd.CommandText = mysql
-            mycmd.ExecuteNonQuery()
-            myconn.Close()
+            DBExecuteNonQueryAndNonInsert(mysql)
             myds.Clear()
         Catch ex As Exception
-            debug_write("Label33_MouseClick 行2554 错误 " & ex.Message)
-            myconn.Close()
+            ReportError(ex)
+            DBClose()
             myds.Clear()
         End Try
     End Sub
@@ -3059,8 +2998,7 @@ Public Class Form1
                 Me.Refresh()
             End If
         Catch ex As Exception
-            'MsgBox(ex.Message)
-            debug_write(" Label39_Click 更改背景图片 行2758 " & ex.Message.ToString)
+            ReportError(ex)
         End Try
     End Sub
 
@@ -3130,8 +3068,7 @@ Public Class Form1
                 End If
             End If
         Catch ex As Exception
-            'MsgBox(ex.Message)
-            debug_write("Label41_Click 打开多媒体 行2829 " & ex.Message.ToString)
+            ReportError(ex)
             Exit Sub
         End Try
     End Sub
@@ -3250,13 +3187,9 @@ Public Class Form1
     Private Sub 清空列表ToolStripMenuItem_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles 清空列表ToolStripMenuItem.Click
         If Me.ListBox1.Items.Count > 0 Then
             Try
-                Dim mycmd As New OleDbCommand
-                myconn.Open()
+
                 mysql = "delete * from mlist "
-                mycmd.Connection = myconn
-                mycmd.CommandText = mysql
-                mycmd.ExecuteNonQuery()
-                myconn.Close()
+                DBExecuteNonQueryAndNonInsert(mysql)
                 myds.Clear()
 
 
@@ -3276,7 +3209,9 @@ Public Class Form1
 
             Catch ex As Exception
                 ' MsgBox(ex.Message)
-                debug_write("清空列表ToolStripMenuItem_Click_1 行2967 " & ex.Message.ToString)
+                ReportError(ex)
+                DBClose()
+                myds.Clear()
             End Try
 
         End If
@@ -3415,7 +3350,8 @@ Public Class Form1
     End Sub
 
     Private Sub 下载最新版本ToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles 下载最新版本ToolStripMenuItem.Click
-        ShellExecute(0, "open", "http://pan.baidu.com/s/1sjz5tIt ", CStr(0), CStr(0), 1)
+        'ShellExecute(0, "open", "http://pan.baidu.com/s/1sjz5tIt ", CStr(0), CStr(0), 1)
+        System.Diagnostics.Process.Start("http://pan.baidu.com/s/1sjz5tIt")
     End Sub
 
 
@@ -3447,18 +3383,13 @@ Public Class Form1
     Private Sub TrackBar3_ValueChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles TrackBar3.ValueChanged
         Try
             ' Setting_boolean = False
-            Dim mysql As String
-            Dim mycmd As New OleDbCommand
-            myconn.Open()
+
             mysql = "update kmSetting set " & "sound_int=" & TrackBar3.Value & " where id_diaoyong=" & 1
-            mycmd.Connection = myconn
-            mycmd.CommandText = mysql
-            mycmd.ExecuteNonQuery()
-            myconn.Close()
+            DBExecuteNonQueryAndNonInsert(mysql)
             myds.Clear()
         Catch ex As Exception
-            debug_write("TrackBar3_ValueChanged 行3151 " & ex.Message.ToString)
-            myconn.Close()
+            ReportError(ex)
+            DBClose()
             myds.Clear()
         End Try
     End Sub
@@ -3590,7 +3521,7 @@ Public Class Form1
 
         Catch ex As Exception
             ' MsgBox("label43_click 歌词控件 2808行" & ex.Message)
-            debug_write("Label43_Click 打开歌词 行3284" & ex.Message.ToString)
+            ReportError(ex)
         End Try
 
     End Sub

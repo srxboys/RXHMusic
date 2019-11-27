@@ -4,7 +4,7 @@
 '       说明：此处的界面设计，完全按照“酷狗——设置界面”为参考
 '       日期：20140722
 
-Imports System.Data.OleDb
+
 Public Class km_DeskSetting
 
     Dim timer1_index As Integer = 0
@@ -180,14 +180,9 @@ Public Class km_DeskSetting
         Try
             ' Setting_boolean = False
             Dim mysql As String
-            Dim mycmd As New OleDbCommand
-            myconn.Open()
             mysql = "update kmSetting set " & "font_name='" & Trim(Me.ComboBox1.Text.ToString) & "'," & "size=" & Val(Trim(Me.ComboBox2.Text)) & "," & "fontType='" _
             & Trim(Me.ComboBox3.Text) & "'," & "tmd=" & tmd & "  where id_diaoyong=" & 1
-            mycmd.Connection = myconn
-            mycmd.CommandText = mysql
-            mycmd.ExecuteNonQuery()
-            myconn.Close()
+            DBExecuteNonQueryAndNonInsert(mysql)
             myds.Clear()
 
             If Setting_boolean = False Then
@@ -200,9 +195,9 @@ Public Class km_DeskSetting
 
         Catch ex As Exception
             'MsgBox("桌面歌词设置" & vbCrLf & ex.Message)
-            debug_write("km_DeskSetting.vb 桌面歌词设置 行203" & ex.Message.ToString)
+            ReportError(ex)
+            DBClose()
             myds.Clear()
-            myconn.Close()
         End Try
        
 

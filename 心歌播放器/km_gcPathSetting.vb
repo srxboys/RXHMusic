@@ -4,7 +4,7 @@
 '       说明：此处的界面设计，完全按照“酷狗——设置界面”为参考
 '       日期：20140722
 
-Imports System.Data.OleDb
+
 Public Class km_gcPathSetting
     Dim myds As New DataSet
     Dim timer1_index As Integer = 0
@@ -42,18 +42,18 @@ Public Class km_gcPathSetting
 
     Private Sub open_kmSetting()
         Try
-            myconn.Open()
-            Dim myda1 As New OleDbDataAdapter("select lrcPath,id_diaoyong from kmSetting  where id_diaoyong=" & 1, myconn)
-            myda1.Fill(myds, "kmSet1")
-            myconn.Close()
+            Dim mysql As String
+            mysql = "select lrcPath,id_diaoyong from kmSetting  where"
+            DBSelect(mysql, "id_diaoyong", "1").Fill(myds, "kmSet1")
+
             If myds.Tables("kmSet1").Rows.Count = 1 Then
                 Me.TextBox1.Text = myds.Tables("kmSet1").Rows(0).Item("lrcPath").ToString
             End If
             myds.Clear()
         Catch ex As Exception
             'MsgBox("常规设置" & vbCrLf & ex.Message)
-            debug_write("km_gcPathSetting.vb 歌词路径设置 行55" & ex.Message.ToString)
-            myconn.Close()
+            ReportError(ex)
+            DBClose()
             myds.Clear()
         End Try
     End Sub
@@ -62,15 +62,9 @@ Public Class km_gcPathSetting
         Try
             ' Setting_boolean = False
             Dim mysql As String
-            Dim mycmd As New OleDbCommand
-            myconn.Open()
             mysql = "update kmSetting set " & "lrcPath='" & Trim(Me.TextBox1.Text) & "' where id_diaoyong=" & 1
-            mycmd.Connection = myconn
-            mycmd.CommandText = mysql
-            mycmd.ExecuteNonQuery()
-            myconn.Close()
+            DBExecuteNonQueryAndNonInsert(mysql)
             myds.Clear()
-
 
             If Setting_boolean = False Then
                 Me.Label2.Left = 303
@@ -81,9 +75,9 @@ Public Class km_gcPathSetting
             End If
         Catch ex As Exception
             'MsgBox("常规设置" & vbCrLf & ex.Message)
-            debug_write("km_gcPathSetting.vb 歌词路径设置 行84" & ex.Message.ToString)
+            ReportError(ex)
+            DBClose()
             myds.Clear()
-            myconn.Close()
         End Try
     End Sub
     Private Sub Timer1_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Timer1.Tick
